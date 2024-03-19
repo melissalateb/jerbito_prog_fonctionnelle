@@ -1,2 +1,240 @@
 (library
  (name m02))
+ (*Cours :
+ *)
+Exercices
+Question 1: 
+let last l = List.hd (List.rev (l));;
+Question 2:
+let swap l = match l with 
+| [] -> []
+| x :: xs -> x :: xs 
+| x :: xs :: l -> xs :: x :: l ;;
+Question 3:
+let repeat s n  = 
+if n < 0 then  []
+else  List.init s (fun _ -> s);;
+Question 4 :
+let range_i i j = 
+if i>j then []
+else List.init (j-i+1) (fun n -> i + n)
+Question 5 :
+let rec decr_list l  = match l with
+|[] -> []
+|x :: rest -> (x-1) :: decr_list rest ;;
+Question 6:
+let rec rev l = match l with 
+|[] -> []
+|p :: l -> (rev l) @ [p] ;;
+
+let rev ll =
+  let rec aux acc ll = match ll with 
+    | [] -> acc
+    | p :: l -> aux (p :: acc) l in
+    aux [] ll ;;
+
+
+Question 7:
+let rec flat l=
+match l with 
+|[] -> []
+| l1 :: l2 -> l1 @ flat l2;;
+Question 8:
+
+
+
+// Types
+
+type maille = Endroit | Envers ;;
+
+let esthetique maille = match maille with
+| Endroit -> 1.3
+| Envers-> 1.2;;
+
+let retournement maille = match maille with 
+| Endroit -> Envers 
+| Envers -> Endroit ;;
+
+type maille= 
+| Endroit 
+| Envers
+| Glisse 
+| Jete
+| Augmente;;
+
+let esthetique maille = match maille with
+| Endroit -> 1.3
+| Envers-> 1.2;;
+
+let connu_de_paul_elliot maille = 
+match maille with 
+| Envdoit -> true 
+| Envers -> false
+| _ -> false (* pour n'importe quelle valeur c'et false *)
+
+
+
+// Exercice 
+
+type fin_partie =
+| Victoire
+| Nul
+| Defaite
+
+let fin_partie_float fin_partie=
+match fin_partie with 
+| Victoire -> 1.
+| Nul -> 0.5
+| Defaite ->0.
+
+(* EXO 7 *)
+
+type coleur = Pique | Coeur | Carreaux | Trefle
+
+type carte_a_jouer = As | Sept | Huit | Neuf | Dix | Valet | Dame | Roi ;;
+type coleur = Pique | Coeur | Carreaux | Trefle;;
+
+let estrouge c = match c with 
+| Carreaux | Coeur -> true
+|  _-> false;;
+
+
+let estune_tete c = match c with 
+| As | Valet | Dame | Roi -> true
+|  _-> false;;
+
+
+let score_normal v = match v with 
+| As  -> 13
+| Dix  -> 10
+| Roi  -> 4
+| Dame  -> 3
+| Valet  -> 2
+| Neuf   -> 0
+| Huit  -> 0
+| Sept  -> 0;;
+
+let score_atout v = match v with 
+| As  -> 11
+| Dix  -> 10
+| Roi  -> 4
+| Dame  -> 3
+| Valet  -> 20
+| Neuf  -> 14
+| Huit  -> 0
+| Sept  -> 0;;
+
+(* Constructeurs avec données *)
+type temperature_dimension = 
+| Celsius of float
+| Farenheit of float ;;
+
+let temp_corporelle = Celsius 37;;
+
+let en_farenheit t = match t with 
+| Farenheit  f -> f 
+| Celsius c -> (c *. 9.) /. 5. +. 32. ;; 
+
+type json = 
+| Null 
+| Bool of bool
+| Int of int
+| Float of float
+| String of string 
+| Array of json list
+| Object of (string * json) list ;;
+
+(*autre possibilité plus compliqué*)
+type operation= 
+| Const of donnee
+| Somme of operation * operation
+| Diff of operation * operation
+| Mult of operation * operation
+| Div of operation * operation;;
+
+type donnee =
+| Entier of int 
+| Flottant of float;;
+
+type operation= 
+| Somme of donnee * donnee
+| Diff of donnee * donnee
+| Mult of donnee * donnee
+| Div of donnee * donnee;;
+
+let donnee_correcte a = match a with 
+| Entier i -> float_of_int i
+| Flottant f -> f ;;
+
+let resultat operation  = match operation with
+| Somme (a, b)  -> Flottant ((donnee_correcte a) +. (donnee_correcte b) )
+| Diff (a, b)-> Flottant((donnee_correcte a) -. (donnee_correcte b) )
+| Mult (a, b)-> Flottant((donnee_correcte a) *. (donnee_correcte b) )
+| Div (a, b) -> Flottant((donnee_correcte a) /. (donnee_correcte b) );;
+
+(*autre possibilité plus compliqué // ?? a essayer plus tard*)
+type operation= 
+| Const of donnee
+| Somme of operation * operation
+| Diff of operation * operation
+| Mult of operation * operation
+| Div of operation * operation;;
+
+type temp=
+| Clesius of float;;
+
+type carte_a_jouer =
+| Numero of int
+| Tete if char
+
+
+type famille = Pique | Carreau | Coeur | trefle
+
+type carte = 
+| As of famille
+| K of famille 
+| Q of famille 
+| J of famille 
+| Dix of famille 
+| Neuf of famille 
+| Huit of famille 
+| Sept of famille  ;;
+
+let est_une_tete c = match c with 
+| K _ | Q _ | J_  -> true
+| _ -> false;;
+
+let est_rouge c = match c with
+|K Coeur |K carreau | |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau v |K Coeur |K carreau |K Coeur |K carreau -> true 
+
+(* Enregistrement *)
+ type ethique  =  Loyal | E_Neutre | Chaotique;;
+ type moral = Bon | Neutre | Mauvais ;;
+
+(*enregistrements *)
+ type personnage_dd = {
+ nom : string ;
+ ethique : ethique ;
+ moral : moral;
+ }
+ (*creer les valeurs*)
+ let p = {nom = "Melissa" ; ethique = Loyal ; moral = Bon } ;;
+
+ (*acceder au champs*)
+
+ let nom_de p = p.nom ;;
+ let est_pire p = match p with
+ | (nom = _) ; ethique = Chaotique ; moral = Mauvais} -> true
+ | _ -> false
+
+ (*Types classqiques*)
+
+ type 'a option = 
+ | None (*la valeur est absente*)
+ | Some of 'a (*la valeur est presente*)
+
+ type 'a list = 
+ |[] (* liste vide*)
+ | ( :: ) of 'a * 'a list (* un element en tête, et le reste de *)
+
+ 
