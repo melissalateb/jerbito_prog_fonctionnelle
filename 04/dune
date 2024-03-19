@@ -1,1 +1,53 @@
 (library (name m04))
+(* *)
+let v = (42, "ocaml", true, 'o');;
+(* int * string * bool * char *)
+
+let (a, b, c, d) = v
+
+Question 1:
+let first (a,b) = a ;;
+let second (a,b) = b ;;
+
+Question 2:
+let sum (a,b) (c,d) = (a + b, b ^ d );;
+
+Question 3 :
+
+let suffix_prefix str c =
+let mot_sans_c = String.split_on_char c str in
+match mot_sans_c with
+| [] | [_] -> (None, None) 
+| first :: _ ->
+  let prev = 
+    if first = "" then None 
+    else Some first.[String.length first - 1] in
+  let rest = String.concat (String.make 1 c) (List.tl mot_sans_c) in
+  let next = 
+    if rest = "" then None 
+    else Some rest.[0] in
+  (prev, next) ;;
+
+(* Cours type Unit*)
+
+(* valeur -> ()  --> unit *)
+
+let rec zip l1 l2 = match (l1, l2) with 
+| [] , [] ->  []
+| _ :: _ , [] | [] , _ :: _ -> raise (Invalid_argument "Listes de tailles differentes")
+| t1 :: q1 , t2 :: q2 -> (t1,t2) :: zip q1 q2 ;;
+
+let rec unzip l = match l with 
+| [] -> ([],[])
+| (x,y)::rest-> 
+let xs,ys = unzip rest in 
+(x::xs),(y::ys) ;; 
+
+(* Définir la fonction min_max : int list -> (int, int) qui retourne une paire contenant le minimum et le maximum de la liste d'entrée.
+
+Définissez une exception Empty que est levée si la liste est vide.*) 
+exception Empty ;;
+let rec min_max l = match l with
+|[] -> raise Empty
+|[x] -> (x,x)
+|x::xs -> (min x (min_max xs), max x (min_max xs));;
