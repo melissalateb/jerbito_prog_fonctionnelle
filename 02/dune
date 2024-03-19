@@ -237,4 +237,76 @@ let est_rouge c = match c with
  |[] (* liste vide*)
  | ( :: ) of 'a * 'a list (* un element en tête, et le reste de *)
 
+ (*Exercies type enregistrements (ou produit) *)
+ (*coordonnées cartesienne avec absices et ordonnées*)
  
+
+type point = { x : float; y : float }
+
+
+type familles = Pique | Coeur | Carreaux | Trefle
+
+
+type carte = As of familles 
+| Sept of familles 
+| Huit of familles 
+| Neuf of familles 
+| Dix of familles 
+| Valet of familles 
+| Dame of familles 
+| Roi of familles 
+
+type carte_a_jouer = { carte: carte; familles: familles}
+
+( * combinaision de types produits et types *)
+type carte_a_jouer  = {}
+
+
+
+(* Types pour les familles de cartes *)
+type famille = Pique | Coeur | Carreau | Trefle
+
+type carte =
+  | As of famille
+  | Sept of famille
+  | Huit of famille
+  | Neuf of famille
+  | Dix of famille
+  | Valet of famille
+  | Dame of famille
+  | Roi of famille
+  | Joker
+
+type carte_a_jouer = carte
+
+(* correction du prof *)
+type couleur  = = Pique | Coeur | Carreaux | Trefle;;
+let force = A|K|Q|J|Dix|Neuf|Huit|Sept ;;
+let carte = {
+  couleur:couleur;
+  force:force
+  }
+type carte_ou_joket = Joker | Carte
+let est_une_carte c =
+  match c with
+  {couleur : _;
+  force : A|K|Q|J } -> true | _ -> false;;
+
+
+let compare_carte c1 c2=
+let int_of_force x =
+|A->7
+|K->6
+|Q->5
+|J->4
+|Dix->3
+|Neuf->2
+|Huit->1
+|Sept->0
+in 
+if c1.couleur <> c2.couleur then true
+else int_of_force c1.force > int_of_force c2.force ;;
+
+let est_une_tete c= 
+match c with 
+{couleur c = _; force = K | Q| J } -> true
