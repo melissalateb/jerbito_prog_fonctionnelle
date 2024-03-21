@@ -17,14 +17,14 @@ let rec concat l1 l2 = match l1 with
 | [] -> l2
 | x :: u -> x :: concat u l2 *)
 
-let concat (x, l) =
+(* let concat (x, l) =
   let rec aux acc = function
     | [] -> acc
     | (y, lst)::ys -> aux (acc @ [y] @ lst) ys
   in match l with
   | [] -> (x, [])
-  | y::ys -> aux [x] l
-
+  | y::ys -> aux [y] l
+ *)
 let rev (x, lst) =
   match List.rev (x::lst) with
   | [] -> failwith "Impossible case: non-empty list turned empty"
