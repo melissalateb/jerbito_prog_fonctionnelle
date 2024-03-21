@@ -50,4 +50,4 @@ exception Empty ;;
 let rec min_max l = match l with
 |[] -> raise Empty
 |[x] -> (x,x)
-|x::xs -> (min x (min_max xs), max x (min_max xs));;
+|x::xs -> (min x (first(min_max xs)), max x (second(min_max xs)));;
