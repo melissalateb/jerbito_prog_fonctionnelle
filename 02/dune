@@ -2,8 +2,6 @@
  (name m02))
  (*Cours :
  *)
-Exercices
-Question 1: 
 let last l = List.hd (List.rev (l));;
 Question 2:
 let swap l = match l with 
@@ -124,7 +122,6 @@ let score_atout v = match v with
 | Huit  -> 0
 | Sept  -> 0;;
 
-(* Constructeurs avec données *)
 type temperature_dimension = 
 | Celsius of float
 | Farenheit of float ;;
@@ -144,7 +141,7 @@ type json =
 | Array of json list
 | Object of (string * json) list ;;
 
-(*autre possibilité plus compliqué*)
+
 type operation= 
 | Const of donnee
 | Somme of operation * operation
@@ -172,7 +169,7 @@ let resultat operation  = match operation with
 | Mult (a, b)-> Flottant((donnee_correcte a) *. (donnee_correcte b) )
 | Div (a, b) -> Flottant((donnee_correcte a) /. (donnee_correcte b) );;
 
-(*autre possibilité plus compliqué // ?? a essayer plus tard*)
+
 type operation= 
 | Const of donnee
 | Somme of operation * operation
@@ -207,27 +204,21 @@ let est_une_tete c = match c with
 let est_rouge c = match c with
 |K Coeur |K carreau | |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau |K Coeur |K carreau v |K Coeur |K carreau |K Coeur |K carreau -> true 
 
-(* Enregistrement *)
  type ethique  =  Loyal | E_Neutre | Chaotique;;
  type moral = Bon | Neutre | Mauvais ;;
 
-(*enregistrements *)
  type personnage_dd = {
  nom : string ;
  ethique : ethique ;
  moral : moral;
  }
- (*creer les valeurs*)
  let p = {nom = "Melissa" ; ethique = Loyal ; moral = Bon } ;;
 
- (*acceder au champs*)
-
+ 
  let nom_de p = p.nom ;;
  let est_pire p = match p with
  | (nom = _) ; ethique = Chaotique ; moral = Mauvais} -> true
  | _ -> false
-
- (*Types classqiques*)
 
  type 'a option = 
  | None (*la valeur est absente*)
@@ -235,10 +226,7 @@ let est_rouge c = match c with
 
  type 'a list = 
  |[] (* liste vide*)
- | ( :: ) of 'a * 'a list (* un element en tête, et le reste de *)
-
- (*Exercies type enregistrements (ou produit) *)
- (*coordonnées cartesienne avec absices et ordonnées*)
+ | ( :: ) of 'a * 'a list
  
 
 type point = { x : float; y : float }
@@ -258,12 +246,10 @@ type carte = As of familles
 
 type carte_a_jouer = { carte: carte; familles: familles}
 
-( * combinaision de types produits et types *)
 type carte_a_jouer  = {}
 
 
 
-(* Types pour les familles de cartes *)
 type famille = Pique | Coeur | Carreau | Trefle
 
 type carte =
@@ -279,7 +265,6 @@ type carte =
 
 type carte_a_jouer = carte
 
-(* correction du prof *)
 type couleur  = = Pique | Coeur | Carreaux | Trefle;;
 let force = A|K|Q|J|Dix|Neuf|Huit|Sept ;;
 let carte = {

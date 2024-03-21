@@ -2,6 +2,8 @@
 
 ## Liste non vide
 
+- `type 'a t = 'a * 'a list`
+
 Compléter les fichiers `roll.ml` et `roll.mli` pour ajouter les fonction suivantes:
 - `length : 'a t -> int`
 - `append : 'a t -> 'a t -> 'a t`
